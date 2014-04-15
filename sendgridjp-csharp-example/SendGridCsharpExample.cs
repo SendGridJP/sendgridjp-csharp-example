@@ -23,7 +23,9 @@ namespace sendgridjp_csharp_example
             smtpapi.SetTo(tos);
             smtpapi.AddSubstitution("fullname", new List<String>() { "田中 太郎", "佐藤 次郎", "鈴木 三郎" });
             smtpapi.AddSubstitution("familyname", new List<String>() { "田中", "佐藤", "鈴木" });
-            smtpapi.AddSubstitution("place", new List<String>() { "中野", "目黒", "中野" });
+            smtpapi.AddSubstitution("place", new List<String>() { "office", "home", "office" });
+            smtpapi.AddSection("office", "中野");
+            smtpapi.AddSection("home", "目黒");
             smtpapi.SetCategory("カテゴリ1");
 
             var email = SendGrid.GetInstance();
