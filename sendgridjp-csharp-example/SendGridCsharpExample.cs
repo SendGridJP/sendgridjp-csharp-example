@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Configuration;
 using System.Net.Mail;
 using System.Net;
-using SendGridMail;
+using SendGrid;
 
 namespace sendgridjp_csharp_example
 {
@@ -19,7 +19,7 @@ namespace sendgridjp_csharp_example
             List<String> tos = new List<String>(ConfigurationManager.AppSettings["TOS"].Split(','));
             String from = ConfigurationManager.AppSettings["FROM"];
 
-            var smtpapi = new Smtpapi.Header();
+            var smtpapi = new SendGrid.SmtpApi.Header();
             smtpapi.SetTo(tos);
             smtpapi.AddSubstitution("fullname", new List<String>() { "田中 太郎", "佐藤 次郎", "鈴木 三郎" });
             smtpapi.AddSubstitution("familyname", new List<String>() { "田中", "佐藤", "鈴木" });
@@ -28,7 +28,7 @@ namespace sendgridjp_csharp_example
             smtpapi.AddSection("home", "目黒");
             smtpapi.SetCategory("カテゴリ1");
 
-            var email = SendGrid.GetInstance();
+            var email = new SendGrid.SendGridMessage();
             email.AddTo(from);  // SmtpapiのSetTo()を使用しているため、実際にはこのアドレスにはメールは送信されない
             email.From = new MailAddress(from, "送信者名");
             email.Subject = "[sendgrid-c#-example] フクロウのお名前はfullnameさん";
@@ -38,7 +38,7 @@ namespace sendgridjp_csharp_example
             email.AddAttachment(@"..\..\gif.gif");
 
             var credentials = new NetworkCredential(sendGridUserName, sendGridPassword);
-            var web = Web.GetInstance(credentials);
+            var web = new Web(credentials);
             web.Deliver(email);
         }
     }
