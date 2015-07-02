@@ -39,7 +39,8 @@ namespace sendgridjp_csharp_example
 
             var credentials = new NetworkCredential(sendGridUserName, sendGridPassword);
             var web = new Web(credentials);
-            web.Deliver(email);
+            var task = web.DeliverAsync(email);
+            task.Wait();
         }
     }
 }
