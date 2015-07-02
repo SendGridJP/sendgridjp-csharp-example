@@ -20,7 +20,7 @@ namespace sendgridjp_csharp_example
             String from = ConfigurationManager.AppSettings["FROM"];
 
             var smtpapi = new SendGrid.SmtpApi.Header();
-            smtpapi.SetTo(tos);
+            smtpapi.SetTo(tos); // 宛先はこちらで指定したものが使用される
             smtpapi.AddSubstitution("fullname", new List<String>() { "田中 太郎", "佐藤 次郎", "鈴木 三郎" });
             smtpapi.AddSubstitution("familyname", new List<String>() { "田中", "佐藤", "鈴木" });
             smtpapi.AddSubstitution("place", new List<String>() { "office", "home", "office" });
@@ -29,7 +29,7 @@ namespace sendgridjp_csharp_example
             smtpapi.SetCategory("category1");
 
             var email = new SendGrid.SendGridMessage();
-            email.AddTo(from);  // SmtpapiのSetTo()を使用しているため、実際にはこのアドレスにはメールは送信されない
+            email.AddTo(from);  // 実際にはこのアドレスには送信されない。エラー回避のため記載。
             email.From = new MailAddress(from, "送信者名");
             email.Subject = "[sendgrid-c#-example] フクロウのお名前はfullnameさん";
             email.Text = "familyname さんは何をしていますか？\r\n 彼はplaceにいます。";
