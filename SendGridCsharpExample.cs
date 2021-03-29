@@ -15,7 +15,7 @@ namespace sendgridjp_csharp_example
             DotNetEnv.Env.Load(".env");
             var apiKey = Environment.GetEnvironmentVariable("API_KEY");
             var tos = Environment.GetEnvironmentVariable("tos").Split(',').Select(to => new EmailAddress(to)).ToList();
-            var from = new EmailAddress(Environment.GetEnvironmentVariable("from"));
+            var from = new EmailAddress(Environment.GetEnvironmentVariable("from"), "送信者名");
 
             var subject = "[sendgrid-c#-example] フクロウのお名前はfullnameさん";
             var plainTextContent = "familyname さんは何をしていますか？\r\n 彼はplaceにいます。";
