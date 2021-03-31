@@ -30,7 +30,10 @@ namespace sendgridjp_csharp_example
             msg.AddAttachment("owl.gif", image, "image/gif", "attachment");
 
             var client = new SendGridClient(apiKey);
-            await client.SendEmailAsync(msg);
+            var response = await client.SendEmailAsync(msg);
+            Console.WriteLine(response.StatusCode);
+            Console.WriteLine(response.Headers);
+            Console.WriteLine(response.Body.ReadAsStringAsync().Result);
         }
     }
 }
