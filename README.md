@@ -6,29 +6,18 @@
 ## 使い方
 
 ```bash
-git clone http://github.com/sendgridjp/sendgridjp-csharp-example.git
+git clone git@github.com:SendGridJP/sendgridjp-csharp-example.git
 cd sendgridjp-csharp-example
-copy org.App.config App.config
-# sendgridjp-csharp-example.slnファイル開きます。
-# App.configファイルを編集してください
-# 実行(F5キー)します。
+cp .env.example .env
 ```
 
-## App.configファイルの編集
-App.configファイルは以下のような内容になっています。
+## .envファイルの編集
+.envファイルは以下のような内容になっています。
 
-```xml
-<?xml version="1.0" encoding="utf-8" ?>
-<configuration>
-  <startup> 
-    <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.5" />
-  </startup>
-  <appSettings>
-    <add key="API_KEY" value="YOUR_API_KEY" />
-    <add key="TOS" value="you@youremail.com,friend1@friendemail.com,friend2@friendemail.com" />
-    <add key="FROM" value="you@youremail.com" />
-  </appSettings>
-</configuration>
+```
+API_KEY=api_key
+TOS=you@youremail.com,friend1@friendemail.com,friend2@friendemail.com
+FROM=you@youremail.com
 ```
 API_KEY:SendGridの[API Key](https://sendgrid.kke.co.jp/docs/User_Manual_JP/Settings/api_keys.html)を指定してください。  
 TOS:宛先をカンマ区切りで指定してください。  
